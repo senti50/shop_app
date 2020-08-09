@@ -61,7 +61,7 @@ class Orders with ChangeNotifier {
         'https://shopapp-3f4ff.firebaseio.com/orders/$userId.json?auth=$authToken';
     final timeStamp = DateTime.now();
 
-    final response = await http.post(url,
+    await http.post(url,
         body: json.encode({
           'amount': total,
           'dataTime': timeStamp.toIso8601String(),
@@ -74,15 +74,6 @@ class Orders with ChangeNotifier {
                   })
               .toList(),
         }));
-
-//    _orders.insert(
-//        0,
-//        OrderItem(
-//          id: json.decode(response.body)['name'],
-//          amount: total,
-//          products: cartProducts,
-//          dateTime: timeStamp,
-//        ));
     notifyListeners();
   }
 }
